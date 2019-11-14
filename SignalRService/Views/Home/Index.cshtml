@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<script src="~/node_modules/@@microsoft/signalr/dist/browser/signalr.js"></script>
+<script>
+
+    var connection;
+    function Send() {
+        
+        var nick = document.getElementById("nick").value;
+        var age = parseInt(document.getElementById("age").value);
+        var msgItem = document.getElementById("message");
+        var msg = msgItem.value;
+        msgItem.value = "";
+       
+        var user = { Nick: nick, Age: age };
+        
+        function SendMsg() {
+            connection.send("Send", user, msg);
+            Append("Message send:" + msg);
+        }
+        if (connection)
+            SendMsg();
+        else {
+            connection = new signalR.HubConnectionBuilder()
+                .withUrl("/hubs/chat")
+                .configureLogging(signalR.LogLevel.Information)
+                .build();
+            connection.on("Message", function (u, msg) {
+                Append(u.nick + ":" + msg)
+             
+            });
+            connection.on("Attached", function (u) {
+                Append("Attached:" + u.nick)
+            });
+
+            connection.onclose(Append);
+            var connectionAction = function (msg) { Append("\n" + msg) };
+            connection.on("Connected", connectionAction);
+            connection.on("Disconnected", connectionAction);
+
+
+            connection.start().then(function () {
+                Append("Connection established");
+                connection.invoke("Attach", user).catch(function (err) { Append(err.toString()) });
+                SendMsg();
+            });
+            
+           
+        }
+        
+    }
+    function Append(msg) {
+        var msgItem = document.createElement("P");
+        msgItem.innerHTML =  msg;
+        document.getElementById("chatLog").appendChild(msgItem)       
+    }
+    document.body.onunload = function () {
+        if (connection)
+            connection.stop();
+    }
+
+    
+</script>
+<div>
+    Nick:<input id="nick" />
+    <br />
+    Age:<input id="age" /><br />
+    Message:<br /><textarea id="message"  rows="4" cols="40"></textarea><br />
+    <input type="button" onclick="Send()" value="Send" /><br />
+    <p>chatLog:</p><br />
+    <div id="chatLog" style="border-color:red;border-width:2px;border-style:solid;"/>
+
+
+</div>

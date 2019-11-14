@@ -1,0 +1,7 @@
+﻿
+@{
+    ViewData["Title"] = "AccessDenied";
+}
+
+<h1>AccessDenied for user @(User.Identity.IsAuthenticated ? @User.Identity.Name : "Anonymous")</h1>
+

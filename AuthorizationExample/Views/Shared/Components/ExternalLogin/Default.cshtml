@@ -1,0 +1,11 @@
+﻿@model AuthorizationExample.Models.ExternalLoginViewModel
+<p>Login with external provider</p>
+<div>
+
+    @foreach (var provider in Model.Providers)
+    {
+        <a asp-action="Login"
+           asp-route-returnUrl="@Model.ReturnUrl"
+           asp-route-provider="@provider">@provider</a>
+    }
+</div>
