@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -56,8 +56,8 @@ namespace AuthorizationExample
             //}
             ).AddFacebook(o =>
             {
-                o.AppId = "625804011287173";
-                o.AppSecret = "a0dd37fb0422a3af93f65357b443f1ca";
+                o.AppId = "<app-id>";
+                o.AppSecret = "<app-secret>";
                 o.SignInScheme = IdentityConstants.ApplicationScheme;
                 o.Events = new Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents()
                 {
