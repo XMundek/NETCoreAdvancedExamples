@@ -1,4 +1,5 @@
-﻿@model AuthorizationExample.Models.LoginViewModel
+﻿@using AuthorizationExample.Components
+@model AuthorizationExample.Models.LoginViewModel
 @{
     ViewData["Title"] = "Login";
 }
@@ -39,8 +40,9 @@
                 <div class="register col-sm-10">Please register if you dont have an account on the site</div>
             </div>
         </form>
+
         <cache expires-after="@TimeSpan.FromHours(24)">
-            @await  Component.InvokeAsync("ExternalLogin")
+            @await Component.InvokeAsync("ExternalLogin")
         </cache>
-</div>
+    </div>
 </div>

@@ -5,13 +5,15 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthorizationExample", "AuthorizationExample\AuthorizationExample.csproj", "{3145B330-9775-4A21-9937-2AC0AD9D37A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRService", "SignalRService\SignalRService.csproj", "{CD48C2FE-BAA5-48B3-90D2-3C4AFFB67297}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRService", "SignalRService\SignalRService.csproj", "{CD48C2FE-BAA5-48B3-90D2-3C4AFFB67297}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRClient", "SignalRClient\SignalRClient.csproj", "{DCF5D485-963B-4CF4-8357-7689401DC98D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRClient", "SignalRClient\SignalRClient.csproj", "{DCF5D485-963B-4CF4-8357-7689401DC98D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareExample", "MiddlewareExample\MiddlewareExample.csproj", "{AAACC4FF-1BF2-4EB0-BE19-94CFB7013015}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiddlewareExample", "MiddlewareExample\MiddlewareExample.csproj", "{AAACC4FF-1BF2-4EB0-BE19-94CFB7013015}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketExample", "WebSocketExample\WebSocketExample.csproj", "{A9BDE4FA-125B-4AAE-B93D-85EDD527CCDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSocketExample", "WebSocketExample\WebSocketExample.csproj", "{A9BDE4FA-125B-4AAE-B93D-85EDD527CCDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddleWareTests", "MiddleWareTests\MiddleWareTests.csproj", "{B826397A-3F5F-4E07-B445-62ABA0122093}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{A9BDE4FA-125B-4AAE-B93D-85EDD527CCDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9BDE4FA-125B-4AAE-B93D-85EDD527CCDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9BDE4FA-125B-4AAE-B93D-85EDD527CCDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B826397A-3F5F-4E07-B445-62ABA0122093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B826397A-3F5F-4E07-B445-62ABA0122093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B826397A-3F5F-4E07-B445-62ABA0122093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B826397A-3F5F-4E07-B445-62ABA0122093}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

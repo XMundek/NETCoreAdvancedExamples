@@ -17,6 +17,10 @@ namespace MiddlewareExample.Services
 
     public class CountService:ICountService
     {
+        public CountService()
+        {
+            System.Diagnostics.Debug.WriteLine(nameof(CountService) + " created");
+        }
         int Count;
         public int IncCount()
         {
@@ -32,6 +36,7 @@ namespace MiddlewareExample.Services
         private ICountService _srv;
         public ReadCountService(ICountService srv)
         {
+            System.Diagnostics.Debug.WriteLine(nameof(ReadCountService) + " created");
             _srv = srv;
         }
         public int GetCount()

@@ -51,7 +51,7 @@ namespace MiddlewareExample
                     if (ctx.User.Identity.IsAuthenticated && ctx.User.IsInRole("Admin"))
                     {
                         
-                        await ctx.Response.WriteAsync($"Permision for user {ctx.User.Identity.Name} granted<br/>");
+                        //await ctx.Response.WriteAsync($"Permision for user {ctx.User.Identity.Name} granted<br/>");
                         await next.Invoke();
                     }
                     else

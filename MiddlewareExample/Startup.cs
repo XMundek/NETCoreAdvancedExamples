@@ -18,12 +18,13 @@ namespace MiddlewareExample
         IContainer ApplicationContainer;
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public IServiceProvider 
+            ConfigureServices(IServiceCollection services)
         {
             services.AddMvcCore();
-            //services.AddScoped<Func<ICountService>,Func<CountService>>(
+            //services.AddScoped<Func<ICountService>, Func<CountService>>(
             //    //(ctx)=>()=> new CountService()
-            //    (ctx) => ()=> ctx.GetService<ICountService>() as CountService
+            //    (ctx) => () => ctx.GetService<ICountService>() as CountService
             //    );
             //services.AddScopedWithFactory<ICountService, CountService>();
             //services.AddScopedWithFactory<IReadCountService, ReadCountService>();
@@ -36,8 +37,9 @@ namespace MiddlewareExample
             //return services.BuildServiceProvider();
             var builder = new ContainerBuilder();
             builder.Populate(services);
-            //builder.RegisterType<ReadCountService>().As<IReadCountService>();
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).Where(t => t.Namespace.EndsWith("Services"))
+            // builder.RegisterType<ReadCountService>().As<IReadCountService>();
+            builder.RegisterAssemblyTypes(
+                Assembly.GetExecutingAssembly()).Where(t => t.Namespace.EndsWith("Services"))
             .AsImplementedInterfaces().SingleInstance();
             ApplicationContainer = builder.Build();
             // creating the IServiceProvider out of the Autofac container
@@ -47,34 +49,50 @@ namespace MiddlewareExample
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,ICountService srv)
         {
+            //app.Map("/x", (map) =>
+            //{
+            //    map.Run(async (context) =>
+            //    {
+            //        await context.Response.WriteAsync("Run middleware for x branch");
+            //    });
+            //});
+            //app.Map("/y", (map) =>
+            //{
+            //    map.Use(async (context, next) =>
+            //    {
+            //        await context.Response.WriteAsync("Run middleware for y branch");
+            //        await next.Invoke();
+            //    });
+            //});
 
-            app.UseStaticFiles();
-            app.Map("/x", (map) =>
-            {
-                map.Run(async (context) =>
-                {
-                    await context.Response.WriteAsync("Run middleware for x branch");
-                });
-            });
-            app.Map("/y", (map) =>
-            {
-                map.Use(async (context, next) =>
-                {
-                    await context.Response.WriteAsync("Run middleware for y branch");
-                    await next.Invoke();
-                });
-            });
-            app.Use(async (context, next) => {
-                
-                context.Response.ContentType = "text/html";
-                await next.Invoke();
-            });
+            //app.Use(async (context, next) =>
+            //{
+            //    await context.Response.WriteAsync("xxxx<br />");
+            //    await next.Invoke();
+            //});
 
-            app.UseMvcWithDefaultRoute();
+            //app.Use(async (context, next) =>
+            //{
+            //    try
+            //    {
+            //        context.Response.ContentType = "text/html";
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        await context.Response.WriteAsync(ex.Message);
+            //    }
+            //    finally
+            //    {
+            //        await next.Invoke();
+            //    }                
+            //});
 
-            app.UseMyAuthentication();
-            app.UseMyAuthorization();
             //app.UseMvcWithDefaultRoute();
+
+            //app.UseMyAuthentication();
+            //app.UseMyAuthorization();
+            app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute();
 
             app.Use(async (context, next) =>
             {

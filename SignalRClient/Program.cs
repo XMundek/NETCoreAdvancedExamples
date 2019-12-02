@@ -23,7 +23,7 @@ namespace SignalRClient
          
             Console.WriteLine("Signal-R Sender!");
 
-            const string url = "http://localhost:54768/hubs/chat";
+            const string url = "http://localhost:52004/hubs/chat";
 
             var connection = new HubConnectionBuilder().WithUrl(url)               
                 .Build();

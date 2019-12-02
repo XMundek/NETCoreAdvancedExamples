@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AuthorizationExample.Controllers
+namespace AuthorizationExample.Components
 {
     public class ExternalLoginViewComponent:ViewComponent
     {
@@ -18,8 +18,8 @@ namespace AuthorizationExample.Controllers
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var res = await _schemeProvider.GetRequestHandlerSchemesAsync();
-            return View(
-                new ExternalLoginViewModel()
+            return
+                View(new ExternalLoginViewModel()
                 {
                     ReturnUrl = Request.Query["returnUrl"],
                     Providers = res.Select(p => p.Name).ToArray()
